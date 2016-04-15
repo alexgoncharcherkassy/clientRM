@@ -7,7 +7,7 @@
             {% for project in item %}
                 <tr>
                     <td width="20px">{{ loop.index }}</td>
-                    <td><a href="">{{ project.name }}</a></td>
+                    <td><a href="{{ path('show_project', {'id': project.id}) }}">{{ project.name }}</a></td>
                 </tr>
             {% endfor %}
         {% endfor %}

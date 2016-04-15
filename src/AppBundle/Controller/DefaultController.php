@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Guzzle\Http\Client;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,13 +14,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $client = new Client('https://redmine.ekreative.com/', [
-            'request.options' => [
-                'headers' => array('X-Redmine-API-Key' => $this->getParameter('x-redmine-api-key')),
-            ]
-        ]);
-        $request = $client->get('projects.json');
-        $response = $request->send();
+        $response = $this->get('client_manager')->get('projects');
 
         return [
             'data' => json_decode($response->getBody(), true)

@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <table class="table-bordered">
+        {% for item in data %}
+            <th>id</th><th>name<th>created</th><th>updated</th>
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.created_on | date("d.m.Y") }}</td>
+                <td>{{ item.updated_on | date("d.m.Y") }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
