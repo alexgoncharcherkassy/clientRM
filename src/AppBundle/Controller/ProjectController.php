@@ -33,4 +33,17 @@ class ProjectController extends Controller
             'data' => json_decode($response->getBody(), true)
         ];
     }
+
+    /**
+     * @Route("/issues/{id}", name="show_issue", requirements={"id" : "\d+"})
+     * @Template("@App/project/showIssue.html.twig")
+     */
+    public function showIssue($id)
+    {
+        $response = $this->get('client_manager')->get('issues/'.$id);
+
+        return [
+            'data' => json_decode($response->getBody(), true)
+        ];
+    }
 }

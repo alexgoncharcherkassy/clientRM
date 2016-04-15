@@ -2,11 +2,13 @@
 
 {% block content %}
     <table class="table-bordered" width="80%">
-        <th>id</th><th>tracker</th><th>status</th><th>priority</th><th>subject</th><th>author</th><th>assignee</th><th>updated</th>
+        <tr>
+            <th>id</th><th>tracker</th><th>status</th><th>priority</th><th>subject</th><th>author</th><th>assignee</th><th>updated</th>
+        </tr>
         {% for item in data %}
             {% for issue in item %}
                 <tr>
-                    <td>{{ issue.id }}</td>
+                    <td><a href="{{ path('show_issue', {'id': issue.id}) }}">{{ issue.id }}</a></td>
                     <td>{{ issue.tracker.name }}</td>
                     <td>{{ issue.status.name }}</td>
                     <td>{{ issue.priority.name }}</td>
