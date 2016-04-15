@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <table class="table-bordered">
+        <th>#</th><th>Name project</th>
+        {% for item in data %}
+            {% for project in item %}
+                <tr>
+                    <td width="20px">{{ loop.index }}</td>
+                    <td><a href="">{{ project.name }}</a></td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}

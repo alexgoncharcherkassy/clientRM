@@ -1,0 +1,21 @@
+{
+  "name": "clientRM",
+  "description": "clientRM [![Build Status](https://travis-ci.org/alexgoncharcherkassy/clientRM.svg)](https://travis-ci.org/alexgoncharcherkassy/clientRM) ====",
+  "main": "index.js",
+  "authors": [
+    "aleksandr gonchar"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/alexgoncharcherkassy/clientRM",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
