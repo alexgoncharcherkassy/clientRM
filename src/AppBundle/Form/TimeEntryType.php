@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,7 +13,6 @@ class TimeEntryType extends AbstractType
     {
         $projectId = $options['projectId'];
         $issueId = $options['issueId'];
-        $activities = $options['activities'];
         if($issueId)
             $builder
                 ->add('issueId', TextType::class,[
@@ -25,16 +23,6 @@ class TimeEntryType extends AbstractType
                         'class' => 'form-control'
                     ],
                     'data' => $issueId
-                ]);
-        if($activities)
-            $builder
-                ->add('activityId', ChoiceType::class,[
-                    'choices' => $activities,
-                    'required' => true,
-                    'label' => 'Activity',
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
                 ]);
         $builder
             ->add('projectId', HiddenType::class, [
@@ -61,11 +49,10 @@ class TimeEntryType extends AbstractType
             'data_class' => 'AppBundle\Entity\TimeEntry',
             'projectId' => null,
             'issueId'   => null,
-            'activities' => null
         ]);
     }
     public function getBlockPrefix()
     {
-        return 'app_bundle_time_entry';
+        return 'time_entry';
     }
 }

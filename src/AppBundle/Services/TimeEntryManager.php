@@ -66,7 +66,6 @@ class TimeEntryManager
         $timeEntry = new TimeEntry();
         $form = $this->formFactory->create(TimeEntryType::class, $timeEntry, [
             'projectId' =>  $projectId,
-            'activities' => null,
             'issueId' => $issueId
         ]);
         $form->add('submit', SubmitType::class, ['label' => 'Save', 'attr' => [ 'class' => 'btn btn-primary' ]]);

@@ -42,9 +42,7 @@ class TimeEntry
      */
     private $comments;
 
-    /**
-     */
-    private $activityId;
+
     /**
      * @return mixed
      */
@@ -109,30 +107,16 @@ class TimeEntry
         $this->projectId = $projectId;
         return $this;
     }
-    /**
-     * @return mixed
-     */
-    public function getActivityId()
-    {
-        return $this->activityId;
-    }
-    /**
-     * @param mixed $activityId
-     * @return $this
-     */
-    public function setActivityId($activityId)
-    {
-        $this->activityId = $activityId;
-        return $this;
-    }
+
     public function toArray()
     {
         return [
-            'project_id' => $this->projectId,
-            'issue_id'   => $this->issueId,
-            'hours'      => $this->hours,
-            'activity_id' => $this->activityId,
-            'comments'   => $this->comments
+            'time_entry' => [
+                'project_id' => $this->projectId,
+                'issue_id'   => $this->issueId,
+                'hours'      => $this->hours,
+                'comments'   => $this->comments
+            ]
         ];
     }
 }
