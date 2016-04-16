@@ -17,7 +17,7 @@ class DefaultController extends Controller
         $response = $this->get('client_manager')->get('projects');
 
         return [
-            'data' => json_decode($response->getBody(), true)
+            'projects' => json_decode($response->getBody(), true)
         ];
     }
 }

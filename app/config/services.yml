@@ -4,6 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    client_manager:
+        class: AppBundle\Services\ManagerClient
+        arguments: ["%x-redmine-api-key%"]
+
+    time_entry_manager:
+            class: AppBundle\Services\TimeEntryManager
+            arguments: ["@client_manager", "@form.factory", "@router", "@session"]
