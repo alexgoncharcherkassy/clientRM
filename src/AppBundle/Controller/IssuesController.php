@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class IssuesController extends Controller
 {
@@ -12,12 +13,14 @@ class IssuesController extends Controller
      * @Route("/issues", name="show_all_issues")
      * @Template("@App/issues/showAllIssues.html.twig")
      */
-    public function showAllIssuesAction()
+    public function showAllIssuesAction(Request $request)
     {
-        $response = $this->get('client_manager')->get('issues');
+        $page = $request->get('page', 1);
+        $pagination = $this->get('custom_pagination')->pagination($page, 'ALL');
 
         return [
-            'issues' => json_decode($response->getBody(), true)
+            'issues' => $pagination['response'],
+            'pagination' => $pagination
         ];
     }
 

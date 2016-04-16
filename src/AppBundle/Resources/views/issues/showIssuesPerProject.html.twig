@@ -33,7 +33,7 @@
             {% endif %}
             {% for i in 1..pagination['countPage'] %}
                 <li class="{{ page == i ? 'disabled' }}">
-                    <a href={{ path('show_all_issues', {'page' : i}) }}>{{ i }}</a>
+                    <a href={{ path('show_issues_project', {'id' : id, 'page' : i }) }}>{{ i }}</a>
                 </li>
             {% endfor %}
         </ul>

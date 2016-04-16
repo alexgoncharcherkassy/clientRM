@@ -35,7 +35,7 @@
                     <div class="progress">
                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow={{ item.done_ratio }}
                             aria-valuemin="0" aria-valuemax="100" style="width: {{ item.done_ratio }}%">
-                            <span class="sr-only-focusable">{{ item.done_ratio }}% Complete</span>
+                            <span class="sr-only-focusabl">{{ item.done_ratio }}% Complete</span>
                         </div>
                     </div>
                 </td>
@@ -47,7 +47,7 @@
         </table>
         <p>
             <h4><strong>Description</strong></h4>
-            {{ item.description }}
+            {{ item.description | nl2br }}
         </p>
     {% endfor %}
 {% endblock %}

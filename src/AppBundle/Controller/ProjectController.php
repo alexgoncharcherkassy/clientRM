@@ -48,14 +48,26 @@ class ProjectController extends Controller
 
     /**
      * @Route("/project/{id}/issues", name="show_issues_project", requirements={"id" : "\d+"})
-     * @Template("@App/issues/showAllIssues.html.twig")
+     * @Template("@App/issues/showIssuesPerProject.html.twig")
      */
-    public function showIssuesPerProjectAction($id)
+    public function showIssuesPerProjectAction($id, Request $request)
     {
-        $response = $this->get('client_manager')->get('issues', '?project_id='.$id);
+        /*$page = $request->get('page', 1);
+        $response = $this->get('client_manager')->get('issues', '?project_id=' . $id);
+        $pagination = $this->get('custom_pagination')->pagination($response);
 
         return [
-            'issues' => json_decode($response->getBody(), true)
+            'issues' => json_decode($response->getBody(), true),
+            'pagination' => $pagination
+        ];*/
+
+        $page = $request->get('page', 1);
+        $pagination = $this->get('custom_pagination')->pagination($page, 'ISSUE', $id);
+
+        return [
+            'issues' => $pagination['response'],
+            'pagination' => $pagination,
+            'id' => $id
         ];
     }
 }
