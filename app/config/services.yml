@@ -8,10 +8,6 @@ services:
         class: AppBundle\Services\ManagerClient
         arguments: ["%x-redmine-api-key%"]
 
-    time_entry_manager:
-        class: AppBundle\Services\TimeEntryManager
-        arguments: ["@client_manager", "@form.factory", "@router", "@session"]
-
     custom_pagination:
         class: AppBundle\Services\Pagination
         arguments: ["@client_manager"]
