@@ -7,6 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class TimeEntryController
+ * @package AppBundle\Controller
+ */
 class TimeEntryController extends Controller
 {
     /**

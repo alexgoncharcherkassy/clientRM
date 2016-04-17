@@ -37,7 +37,7 @@ class TimeEntry
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      minMessage = "Your message must be at least {{ limit }} characters long",
      * )
      */
     private $comments;

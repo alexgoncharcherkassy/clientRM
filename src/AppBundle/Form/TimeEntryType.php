@@ -7,8 +7,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+/**
+ * Class TimeEntryType
+ * @package AppBundle\Form
+ */
 class TimeEntryType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $projectId = $options['projectId'];
@@ -43,6 +52,10 @@ class TimeEntryType extends AbstractType
                 ]
             ]);
     }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -51,6 +64,10 @@ class TimeEntryType extends AbstractType
             'issueId'   => null,
         ]);
     }
+
+    /**
+     * @return string
+     */
     public function getBlockPrefix()
     {
         return 'time_entry';

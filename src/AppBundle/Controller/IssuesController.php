@@ -7,6 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class IssuesController
+ * @package AppBundle\Controller
+ */
 class IssuesController extends Controller
 {
     /**
@@ -37,12 +41,4 @@ class IssuesController extends Controller
         ];
     }
 
-    /**
-     * @Route("/issues/page/{page}", name="pagination", requirements={"page" : "\d+"}, defaults={"page" : 1})
-     * @Template("@App/issues/showAllIssues.html.twig")
-     */
-    public function paginationIssuesAction($page)
-    {
-
-    }
 }

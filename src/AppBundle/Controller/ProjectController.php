@@ -52,15 +52,6 @@ class ProjectController extends Controller
      */
     public function showIssuesPerProjectAction($id, Request $request)
     {
-        /*$page = $request->get('page', 1);
-        $response = $this->get('client_manager')->get('issues', '?project_id=' . $id);
-        $pagination = $this->get('custom_pagination')->pagination($response);
-
-        return [
-            'issues' => json_decode($response->getBody(), true),
-            'pagination' => $pagination
-        ];*/
-
         $page = $request->get('page', 1);
         $pagination = $this->get('custom_pagination')->pagination($page, 'ISSUE', $id);
 
