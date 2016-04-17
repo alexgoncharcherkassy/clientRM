@@ -59,7 +59,7 @@ class ManagerClient
      * @param $body
      * @return \Guzzle\Http\Message\Response
      */
-    public function post($url, $body)
+    public function post($url, array $body)
     {
         $request = $this->client->post($url.'.json',[], $body);
         $response = $request->send();
