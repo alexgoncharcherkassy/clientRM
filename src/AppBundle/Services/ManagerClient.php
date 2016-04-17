@@ -17,6 +17,9 @@ use Guzzle\Http\Client;
  */
 class ManagerClient
 {
+    /**
+     * @var
+     */
     private $param;
     /**
      * @var Client
@@ -51,6 +54,11 @@ class ManagerClient
     }
 
 
+    /**
+     * @param $url
+     * @param $body
+     * @return \Guzzle\Http\Message\Response
+     */
     public function post($url, $body)
     {
         $request = $this->client->post($url.'.json',[], $body);
