@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TimeEntryController extends Controller
 {
     /**
-     * @Route("/time_entry/{projectId}/{issueId}", name="time_entry", requirements={"id" : "\d+"})
+     * @Route("/time_entry/{projectId}/{issueId}", name="time_entry", requirements={"projectId" : "\d+", "issueId" : "\d+"})
      * @Template("@App/timeEntry/createTimeEntry.html.twig")
      */
     public function createTimeEntryAction($projectId, $issueId = null, Request $request)
