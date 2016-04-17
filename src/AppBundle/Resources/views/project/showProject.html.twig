@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{ flash_message }}</strong>
+        </div>
+    {% endfor %}
+    <h3>{{ projects.project.name }}</h3>
+    <h5>created {{ projects.project.created_on | date("d.m.Y H:i") }}</h5>
+    <p>
+        Issue tracking:
+        {% for item in projects.project.trackers %}
+            {% spaceless %}
+                    <strong>{{ item.name }}</strong>
+            {% endspaceless %}
+        {% endfor %}
+    </p>
+    <p>
+        Issue categories:
+        {% for item in projects.project.issue_categories %}
+            {% spaceless %}
+                <strong>{{ item.name }}</strong>
+            {% endspaceless %}
+        {% endfor %}
+    </p>
+    <p>
+        Enabled modules:
+        {% for item in projects.project.enabled_modules %}
+            {% spaceless %}
+                <strong>{{ item.name }}</strong>
+            {% endspaceless %}
+        {% endfor %}
+    </p>
+    <a href="{{ path('time_entry', {'projectId': projects.project.id}) }}" class="btn btn-large btn-primary">Create Time Entry</a>
+    <a href="{{ path('show_issues_project', {'id': projects.project.id}) }}" class="btn btn-large btn-primary">Issues per project</a>
+    <br/>
+    <p><strong>Comments:</strong></p>
+    {% for comment in comments %}
+        <ul class="thumbnail" style="width: 65%; margin-left: 20px">
+            <small>Published {{ comment.createdAt|date('d.m.Y H:i') }}</small>
+                <li class="span5" style="list-style: none">
+                    <div class="thumbnail">
+                        {{ comment.textComment }}
+                    </div>
+                </li>
+        </ul>
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_rest(form) }}
+    <br/>
+    <input type="submit" VALUE="Save" class="btn btn-large btn-primary" id="submit">
+    {{ form_end(form) }}
+{% endblock %}

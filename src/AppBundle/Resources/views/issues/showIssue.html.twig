@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+ <a href="{{ path('time_entry', {'projectId': issues.issue.project.id, 'issueId' : issues.issue.id }) }}" class="btn btn-large btn-primary">Create Time Entry</a>
+    {% for item in issues %}
+        <h1>{{ item.tracker.name }} #{{ item.id }}</h1>
+        <div style="margin-left: 50px">
+            <h3>{{ item.subject }}</h3>
+            <p>Added by {{ item.author.name }} {{ item.created_on | date("d.m.Y H:i") }}</p>
+        </div>
+        <table class="table table-border table-hover">
+            <tr>
+                <td>Status</td>
+                <td>{{ item.status.name }}</td>
+            </tr>
+            <tr>
+                <td>Priority</td>
+                <td>{{ item.priority.name }}</td>
+            </tr>
+            <tr>
+                <td>Assignee</td>
+                {% if item.assigned_to.name is defined %}
+                    <td>{{ item.assigned_to.name }}</td>
+                {% else %}
+                    <td> - </td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Start date</td>
+                <td>{{ item.created_on | date("d.m.Y H:i") }}</td>
+            </tr>
+            <tr>
+                <td>Done</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow={{ item.done_ratio }}
+                            aria-valuemin="0" aria-valuemax="100" style="width: {{ item.done_ratio }}%">
+                            <span class="sr-only-focusabl">{{ item.done_ratio }}% Complete</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Spent hours</td>
+                <td>{{ item.spent_hours }} h</td>
+            </tr>
+        </table>
+        <p>
+            <h4><strong>Description</strong></h4>
+            {{ item.description | nl2br }}
+        </p>
+    {% endfor %}
+{% endblock %}

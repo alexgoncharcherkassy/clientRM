@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <table class="table table-border table-hover">
+        <th>#</th><th>Name project</th><th>Status</th><th>Created</th><th>Updated</th><th>Issues</th>
+        {% for item in projects %}
+            {% for project in item %}
+                <tr>
+                    <td width="20px">{{ loop.index }}</td>
+                    <td><a href="{{ path('show_project', {'id': project.id}) }}">{{ project.name }}</a></td>
+                    <td>{{ project.status }}</td>
+                    <td>{{ project.created_on | date("d.m.Y H:i") }}</td>
+                    <td>{{ project.updated_on | date("d.m.Y H:i") }}</td>
+                    <td><a href="{{ path('show_issues_project', {'id': project.id}) }}">Issues</a></td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}
