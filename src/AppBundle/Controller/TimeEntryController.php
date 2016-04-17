@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\TimeEntry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\TimeEntryType;
 
 /**
  * Class TimeEntryController
@@ -19,6 +21,27 @@ class TimeEntryController extends Controller
      */
     public function createTimeEntryAction($projectId, $issueId = null, Request $request)
     {
-        return $this->get('time_entry_manager')->process($request, $projectId, $issueId);
+        $timeEntry = new TimeEntry();
+        $form = $this->createForm(TimeEntryType::class, $timeEntry, [
+            'projectId' =>  $projectId,
+            'issueId' => $issueId
+        ]);
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            $timeEntry->setIssueId($issueId);
+            $response = $this->get('client_manager')->post('time_entries', $timeEntry->toArray());
+            if($response->isError()){
+                $this->addFlash('notice', 'Time entry was not created due to validation failures');
+            } else {
+                $this->addFlash('notice', "Time entry was created");
+            }
+
+            return $this->redirectToRoute('show_project', ['id' => $projectId]);
+        }
+
+        return [
+            'form' => $form->createView()
+        ];
     }
 }
